@@ -1,4 +1,5 @@
-# Unikey (Vietnamese Input Method) engine support for Fcitx
+# Fcitx5 Unikey
+Vietnamese Input Method engine support for Fcitx5
 
 Released under GPLv3+
 
