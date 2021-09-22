@@ -2,6 +2,11 @@
 
 Released under GPLv3+
 
+# Dependencies
+```
+sudo apt install libfcitx5-qt-dev fcitx5-modules-dev extra-cmake-modules fcitx5 fcitx5-frontend-*
+```
+
 # Install
 ```sh
 cmake -DCMAKE_INSTALL_PREFIX=/usr/ .
