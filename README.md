@@ -18,8 +18,22 @@ sudo make install
 # Viber fix
 Fcitx/Fcitx5 for Viber AppImage
 ```
+# https://docs.appimage.org/packaging-guide/manual.html
+
+sudo apt install -y patchelf chrpath
+
 ./viber.AppImage --appimage-extract
-cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libfcitx5platforminputcontextplugin.so squashfs-root/plugins/platforminputcontexts
+cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so ./squashfs-root/plugins/platforminputcontexts
+
+patchelf --set-rpath '$ORIGIN/../../lib' ./squashfs-root/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so
+# chrpath -r '$ORIGIN/../../lib' ./squashfs-root/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so
+chmod +x ./squashfs-root/plugins/platforminputcontexts/*
+
+objdump -x ./squashfs-root/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so
+readelf -d ./squashfs-root/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so
+# chrpath -l ./squashfs-root/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so
+
 # Download appimagetool from https://github.com/AppImage/AppImageKit/releases
+
 appimagetool squashfs-root/ viber.AppImage
 ```
